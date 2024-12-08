@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="welcome">
+            <h1>¡Bienvenido!</h1>
+            <p>Has iniciado sesión exitosamente.</p>
+            <p id="gmail-display"></p>
+            <a href="/login" class="logout-btn">Cerrar Sesión</a>
+        </div>
+    </div>
+    <script>
+        fetch('/user-info')
+            .then(response => response.json())
+            .then(data => {
+                if (data.gmail) {
+                    document.getElementById('gmail-display').textContent = 
+                        `Usuario actual: ${data.gmail}`;
+                }
+            });
+    </script>
+</body>
+</html>
